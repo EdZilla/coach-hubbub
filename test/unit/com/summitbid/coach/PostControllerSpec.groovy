@@ -46,43 +46,44 @@ class PostControllerSpec extends Specification {
 
 	 
 	
-//	def "Adding a invalid new post to the timeline trips an error"() {
-//		given: "A user with posts in the db"
-//		User chuck = new User(loginId: "chuck_norris", password: "password").save(failOnError: true)
-//
-//		and: "A loginId parameter"
-//		params.id = chuck.loginId
-//
-//		and: "Some content for the post"
-//		params.content = null
-//
-//		when: "addPost is invoked"
-//		def model = controller.addPost()
-//
-//		then: "our flash message and redirect confirms the success"
-//		flash.message == "Invalid or empty post"
-//		response.redirectedUrl == "/post/timeline/${chuck.loginId}"
-//		Post.countByUser(chuck) == 0
-//
-//	}
+	def "Adding a invalid new post to the timeline trips an error"() {
+		given: "A user with posts in the db"
+		User chuck = new User(loginId: "chuck_norris", password: "password").save(failOnError: true)
 
-//	@spock.lang.Unroll
-//	def "Testing id of #suppliedId redirects to #expectedUrl"() {
-//
-//		given:
-//		params.id = suppliedId
-//
-//		when: "Controller is invoked"
-//		controller.index()
-//
-//		then:
-//		response.redirectedUrl == expectedUrl
-//
-//		where:
-//		suppliedId  |   expectedUrl
-//		'joe_cool'  |   '/post/timeline/joe_cool'
-//		null        |   '/post/timeline/chuck_norris'
-//
-//	}
+		and: "A loginId parameter"
+		params.id = chuck.loginId
+
+		and: "Some content for the post"
+		params.content = null
+
+		when: "addPost is invoked"
+		def model = controller.addPost()
+
+		then: "our flash message and redirect confirms the success"
+		flash.message == "Invalid or empty post"
+		response.redirectedUrl == "/post/timeline/${chuck.loginId}"
+		Post.countByUser(chuck) == 0
+
+	}
+
+	@spock.lang.Unroll
+	def "Testing id of #suppliedId redirects to #expectedUrl"() {
+
+		given:
+		params.id = suppliedId
+
+		when: "Controller is invoked"
+		controller.index()
+
+		then:
+		response.redirectedUrl == expectedUrl
+
+		where:
+		suppliedId  |   expectedUrl
+		'joe_cool'  |   '/post/timeline/joe_cool'
+		'sara'      |   '/post/timeline/sara'
+		null        |   '/user/index'
+
+	}
 
 }

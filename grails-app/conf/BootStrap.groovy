@@ -15,7 +15,6 @@ class BootStrap {
 			test {
 				println "environment is test"
 				if (!Post.count()) {
-					createAdminUserIfRequired()
 					createSampleData()
 				}
 			}
@@ -28,6 +27,9 @@ class BootStrap {
 				println "environment is staging"
 			}
 		}
+		
+		// Admin user is required for all environments
+		createAdminUserIfRequired()
     }
 	
     def destroy = {

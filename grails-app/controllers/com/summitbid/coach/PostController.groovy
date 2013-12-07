@@ -2,10 +2,16 @@ package com.summitbid.coach
 
 class PostController {
     static scaffold = true
+	// def defaultAction = 'timeline'
 	
 	def index() {
-		if (!params.id) params.id = "chuck_norris"
-		redirect action: 'timeline', params: params
+		if (!params.id) { 
+			redirect controller: 'user', action: 'index'
+			//params.id = "chuck_norris"
+		}
+		else {
+			redirect action: 'timeline', params: params
+		}
 	}
 	
 	def timeline() {
