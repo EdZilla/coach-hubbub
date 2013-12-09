@@ -11,8 +11,20 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
 @TestFor(PostController)
-@Mock([User, Post])
+@Mock([User, Post,LameSecurityFilters])
 class PostControllerSpec extends Specification {
+	
+	def "Adding new post via mocked service layer honours functionality"() {
+		given: "a mock post service"
+		def mockPostService = Mock(PostService) 
+		1 * mockPostService.createPost(_, _) >> new Post(content: "Mock Post") 
+		controller.postService = mockPostService 
+		when: "controller is invoked"
+		def result = controller.addPost("joe_cool", "Posting up a storm") 
+		then: "redirected to timeline, flash message tells us all is well"
+		flash.message ==~ /Added new post: Mock.*/ 
+		response.redirectedUrl == '/post/timeline/joe_cool' 
+	}
 
 	def "Get a users timeline given their id"() {
 		given: "A user with posts in the db"
@@ -44,25 +56,32 @@ class PostControllerSpec extends Specification {
 
 	}
 
-	 
-	
-	def "Adding a invalid new post to the timeline trips an error"() {
-		given: "A user with posts in the db"
-		User chuck = new User(loginId: "chuck_norris", password: "password").save(failOnError: true)
+	def "Adding a valid new post to the timeline"() {
+		given: "a mock post service"
+		def mockPostService = Mock(PostService)
+		1 * mockPostService.createPost(_, _) >> new Post(content: "Mock Post")
+		controller.postService = mockPostService
 
-		and: "A loginId parameter"
-		params.id = chuck.loginId
-
-		and: "Some content for the post"
-		params.content = null
-
-		when: "addPost is invoked"
-		def model = controller.addPost()
+		when: "addPost is invoked with a login ID and some post content"
+		def model = controller.addPost("chuck_norris", "Mock Post")
 
 		then: "our flash message and redirect confirms the success"
-		flash.message == "Invalid or empty post"
-		response.redirectedUrl == "/post/timeline/${chuck.loginId}"
-		Post.countByUser(chuck) == 0
+		flash.message ==~ /Added new post: Mock.*/
+		response.redirectedUrl == "/post/timeline/chuck_norris"
+	}
+	
+	def "Adding a invalid new post to the timeline trips an error"() {
+		 given: "a mock post service"
+        def mockPostService = Mock(PostService)
+        1 * mockPostService.createPost(_, _) >> { throw new PostException(message: "Invalid or empty post") }
+        controller.postService = mockPostService
+
+        when: "addPost is invoked with a login ID but no post content"
+        def model = controller.addPost("chuck_norris", null)
+
+        then: "our flash message and redirect confirms the failure"
+        flash.message == "Invalid or empty post"
+        response.redirectedUrl == "/post/timeline/chuck_norris"
 
 	}
 
@@ -82,8 +101,20 @@ class PostControllerSpec extends Specification {
 		suppliedId  |   expectedUrl
 		'joe_cool'  |   '/post/timeline/joe_cool'
 		'sara'      |   '/post/timeline/sara'
-		null        |   '/user/index'
+		null        |   '/post/timeline/chuck_norris'
 
+	}
+	
+	def "Exercising security filter invocation for unauthenticated user"() {
+		
+				when:
+				withFilters(action: "addPost") {
+					controller.addPost("glen_a_smith", "A first post")
+				}
+		
+				then:
+				response.redirectedUrl == '/login/form'
+		
 	}
 
 }

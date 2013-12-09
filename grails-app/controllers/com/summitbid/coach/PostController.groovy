@@ -2,16 +2,16 @@ package com.summitbid.coach
 
 class PostController {
     static scaffold = true
+	
+	def postService
 	// def defaultAction = 'timeline'
 	
 	def index() {
-		if (!params.id) { 
-			redirect controller: 'user', action: 'index'
-			//params.id = "chuck_norris"
+		if (!params.id) {
+			params.id = "chuck_norris"
+			//redirect controller: 'user', action: 'index'
 		}
-		else {
-			redirect action: 'timeline', params: params
-		}
+		redirect action: 'timeline', params: params
 	}
 	
 	def timeline() {
@@ -23,20 +23,14 @@ class PostController {
 		}
 	}
 	
-	def addPost() {
-		def user = User.findByLoginId(params.id)
-		if (user) {
-			def post = new Post(params)
-			user.addToPosts(post)
-			if (user.save()) {
-				flash.message = "Successfully created Post"
-			} else {
-				flash.message = "Invalid or empty post"
-			}
-		} else {
-			flash.message = "Invalid User Id"
-		}
-		redirect(action: 'timeline', id: params.id)
-	}
+	def addPost(String id, String content) {
+        try {
+            def newPost = postService.createPost(id, content)
+            flash.message = "Added new post: ${newPost.content}"
+        } catch (PostException pe) {
+            flash.message = pe.message
+        }
+        redirect action: 'timeline', id: id
+    }
 	
 }
