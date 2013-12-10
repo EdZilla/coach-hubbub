@@ -12,6 +12,12 @@ class PostException extends RuntimeException {
 class PostService {
 //	static transactional = true
 
+	/**
+	 * add a post to user 
+	 * @param loginId login id of user
+	 * @param content post content
+	 * @return post or throw PostException
+	 */
 	Post createPost(String loginId, String content) {
 		def user = User.findByLoginId(loginId)
 		if (user) {
@@ -26,6 +32,7 @@ class PostService {
 			}
 		}
 
+		// No user 
 		throw new PostException(message: "Invalid login ID")
 	}
 }

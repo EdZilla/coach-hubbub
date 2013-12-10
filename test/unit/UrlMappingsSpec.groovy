@@ -18,7 +18,7 @@ class UrlMappingsSpec extends Specification {
         where:
         url                     | expectCtrl| expectAction  | expectId
         '/users/glen'           | 'post'    | 'timeline'    | 'glen'
-        '/timeline/chuck_norris'| 'post'    | 'timeline'    | 'chuck_norris'
+        '/users/sara'           | 'post'    | 'timeline'    | 'sara'
     }
 
 }

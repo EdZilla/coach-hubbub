@@ -23,6 +23,12 @@ class PostController {
 		}
 	}
 	
+	/**
+	 * add a post to a particular user
+	 * @param id id of user
+	 * @param content post content
+	 * @return redirect to timeline of user
+	 */
 	def addPost(String id, String content) {
         try {
             def newPost = postService.createPost(id, content)

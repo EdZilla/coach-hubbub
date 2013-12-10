@@ -6,12 +6,22 @@ class UrlMappings {
 //            action = "timeline"
 //            id = "chuck_norris"
 //        }
-//
-//        "/users/$id" {
-//            controller = "post"
-//            action = "timeline"
-//        }
+
+        "/users/$id" {
+            controller = "post"
+            action = "timeline"
+        }
+		
+		"/post/timeline/$id" {
+			controller = "post"
+			action = "timeline"
+		}
     
+		"/timeline/$id" {
+			controller = "post"
+			action = "timeline"
+		}
+		
 		"/$controller/$action?/$id?(.${format})?"{
 			constraints {
 				// apply constraints here
