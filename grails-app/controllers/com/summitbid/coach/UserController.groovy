@@ -6,13 +6,16 @@ class UserController {
     def search() {}
 
     def results(String query) {
+		log.trace "Executing action: '$actionName' with params '$params'"
         def users = User.where { loginId =~ "%${query}%" }.list()
         return [ users: users,
                  term: params.loginId,
                  totalUsers: User.count() ]
     }
 
-    def advSearch() {}
+    def advSearch() {
+		log.trace "Executing action: '$actionName' with params '$params'"
+	}
 
     def advResults() {
 		log.trace "Executing action: '$actionName' with params '$params'"

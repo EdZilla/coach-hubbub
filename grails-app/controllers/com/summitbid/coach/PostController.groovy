@@ -7,6 +7,7 @@ class PostController {
 	// def defaultAction = 'timeline'
 	
 	def index() {
+		log.trace "Executing action: '$actionName' with params '$params'"
 		if (!params.id) {
 			params.id = "chuck_norris"
 			//redirect controller: 'user', action: 'index'
@@ -15,6 +16,7 @@ class PostController {
 	}
 	
 	def timeline() {
+		log.trace "Executing action: '$actionName' with params '$params'"
 		def user = User.findByLoginId(params.id)
 		if (!user) {
 			response.sendError(404)
@@ -30,6 +32,7 @@ class PostController {
 	 * @return redirect to timeline of user
 	 */
 	def addPost(String id, String content) {
+		log.trace "Executing action: '$actionName' with params '$params'"
         try {
             def newPost = postService.createPost(id, content)
             flash.message = "Added new post: ${newPost.content}"
