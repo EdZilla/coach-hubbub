@@ -28,8 +28,8 @@
         <div class="allPosts">
             <g:each in="${user.posts}" var="post">
                 <div class="postEntry">
-                    <div class="postText">${post.content}</div>
-                    <div class="postDate">${post.dateCreated}</div>
+                    <div class="postText">${post.content}</div>                  
+                    <div class="postDate"><hub:dateFromNow date="${post.dateCreated}"/></div> 
                 </div>
             </g:each>
         </div>
