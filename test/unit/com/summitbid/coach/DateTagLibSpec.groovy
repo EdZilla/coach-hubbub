@@ -1,6 +1,8 @@
-package coach.hubbub
+package com.summitbid.coach
 
 import com.grailsinaction.Unroll;
+
+import com.summitbid.coach.DateTagLib;
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification

@@ -1,4 +1,4 @@
-package coach.hubbub
+package com.summitbid.coach
 
 // TODO: Need to refactor this into package com.summitbid.coach
 
