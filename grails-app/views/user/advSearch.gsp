@@ -5,6 +5,14 @@
     </head>
     <body>
 
+<%--		<nav:secondary/>--%>
+        
+        <div id="admin-nav">
+           <nav:menu scope="admin">
+           	<li><nav:title item="Advanced Search-ejy"/></li>
+           </nav:menu>
+        </div> 
+
         <formset>
             <legend>Advanced Search for Friends</legend>
 

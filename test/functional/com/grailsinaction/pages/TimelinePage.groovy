@@ -1,0 +1,22 @@
+package com.grailsinaction.pages
+
+class TimelinePage extends geb.Page {
+    static url = "users"
+
+    static content = {
+        whatHeading { $("#newPost h3") }
+        newPostContent { $("#postContent") }
+        //submitPostButton { $("#newPost").find("input", type: "button") }
+		submitPostButton { $("#newPost").find("input", type: "submit") }
+        posts { content ->
+            if (content) $("div.postText", text: content).parent()
+            else $("div.postEntry")
+        }
+    }
+
+    static at = {
+        $("title").text().contains("Timeline for")
+        //$("#allPosts")
+		$("div.allPosts")
+    }
+}

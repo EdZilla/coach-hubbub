@@ -2,20 +2,24 @@ package com.summitbid.coach
 
 class UserController {
     static scaffold = true
+	
 
     def search() {}
 
     def results(String query) {
+		log.trace "Executing action: results with params '$params'"
         def users = User.where { loginId =~ "%${query}%" }.list()
         return [ users: users,
                  term: params.loginId,
                  totalUsers: User.count() ]
     }
 
-    def advSearch() {}
+    def advSearch() {
+		log.trace "Executing action: advSearch with params '$params'"
+	}
 
     def advResults() {
-		log.trace "Executing action: '$actionName' with params '$params'"
+		log.trace "Executing action: advResults with params '$params'"
 
         def profileProps = Profile.metaClass.properties*.name
 		log.debug "profileProps: ${profileProps}"
@@ -34,8 +38,12 @@ class UserController {
         [ profiles : profiles ]
     }
     
+    /**
+     * NOTE this is different from the chapter 08 version so be advised. 
+     */
 	def register() {
-		log.trace "Executing action: '$actionName' with params '$params'"
+		log.trace "Executing action: register with params '$params'"
+		//log.trace "Executing action: register with params '$params'"
 		if (request.method == "POST") {
 		   def user = new User(params)
 		   if (user.validate()) {
@@ -51,8 +59,13 @@ class UserController {
 		}
    }
 	
+	/**
+	 * Note this is different from the chapter 08 version. It has the assignment of 
+	 * urc.properties = params
+	 * and it printlns the urc errors. 
+	 */
 	def register2(UserRegistrationCommand urc) {
-		log.trace "Executing action: '$actionName' with params '$params' and command object '$urc.properties'"
+		log.trace "Executing action: register2 with params '$params' and command object '$urc.properties'"
 		
 		urc.properties  = params
 		
@@ -79,7 +92,7 @@ class UserController {
 	}
 	
 	def profile(String id) {
-		log.trace "Executing action: '$actionName' with params '$params' and id '$id'"
+		log.trace "Executing action: profile with params '$params' and id '$id'"
 		def user = User.findByLoginId(id, [fetch: [profile: "eager"]])
 		if (!user) {
 			response.sendError(404)

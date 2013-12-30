@@ -39,11 +39,13 @@ class BootStrap {
 		println "createSampleData enter"
 		def now = new Date()
 		
-//		def chuck = new User(
-//			loginId: "chuck_norris",
-//			password: "willow",
-//			profile: new Profile(fullName: "Chuck Norris", email: "chuck@nowhere.net"),
-//			dateCreated: now).save(failOnError: true)
+		def chuck = new User(
+			loginId: "chuck_norris",
+			password: "willow",
+			profile: new Profile(fullName: "Chuck Norris", email: "chuck@nowhere.net"),
+			dateCreated: now).save(failOnError: true)
+			chuck.addToPosts(content: "wtf chuck")
+		
 		def graeme = new User(
 				loginId: "graeme",
 				password: "willow",

@@ -25,7 +25,12 @@ class UserControllerSpec extends Specification {
 		when: "the user is registered"
 		controller.register()
 		then: "the user is created, and browser redirected"
+		println " response == ${response.getText()}"
+		println " response == ${response}"
+		println " response == ${response.redirectedUrl}"
+
 		response.redirectedUrl == '/'
+				
 		User.count() == 1
 		Profile.count() == 1
 	}

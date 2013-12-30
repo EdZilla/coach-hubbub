@@ -4,6 +4,12 @@
     <meta name="layout" content="main"/>
 </head>
 <body>
+		<nav:secondary/>
+        
+        <div id="user-nav">
+           <nav:menu scope="user"/>
+        </div> 
+
     <formset>
         <legend>Search for Friends</legend>
         <g:form action="results">

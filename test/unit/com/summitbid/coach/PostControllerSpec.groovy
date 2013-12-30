@@ -90,7 +90,7 @@ class PostControllerSpec extends Specification {
         suppliedId  |   expectedUrl                
 		'joe_cool'  |   '/users/joe_cool'         
 		'sara'      |   '/users/sara'             
-        null        |   '/users/chuck_norris'      
+        null        |   '/users/admin'      
 
     }
 	

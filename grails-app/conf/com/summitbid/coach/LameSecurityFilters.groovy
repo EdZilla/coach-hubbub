@@ -3,6 +3,8 @@ package com.summitbid.coach
 class LameSecurityFilters {
 
      def filters = {
+		 log.trace "lameSecurityFilter filter call"
+		 
         secureActions(controller: 'post', action: '(addPost|deletePost)') {
             before = {
                 if (params.impersonateId) {

@@ -46,11 +46,19 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.jboss.com/maven2/"
     }
 
+    def gebVersion = "0.9.2"
+    def seleniumVersion = "2.32.0"
+
     dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.24'
-		
-		test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+        test "org.gebish:geb-spock:$gebVersion"
+
+        test "org.seleniumhq.selenium:selenium-support:$seleniumVersion"
+//        test "org.seleniumhq.selenium:selenium-htmlunit-driver:$seleniumVersion", {
+//            exclude "xml-apis"
+//        }
+//        test "org.seleniumhq.selenium:selenium-chrome-driver:$seleniumVersion"
+        test "org.seleniumhq.selenium:selenium-firefox-driver:$seleniumVersion"
     }
 
     plugins {
@@ -61,12 +69,15 @@ grails.project.dependency.resolution = {
         //compile ":scaffolding:2.0.1"
 		compile ":scaffolding:2.0.1"
         compile ':cache:1.1.1'
+		compile ":platform-core:1.0.RC6"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.4" // or ":hibernate4:4.1.11.4"
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.10.2"
         runtime ":resources:1.2.1"
+		
+		test("org.grails.plugins:geb:$gebVersion")
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"
