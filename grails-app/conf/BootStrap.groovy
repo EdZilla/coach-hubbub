@@ -50,6 +50,7 @@ class BootStrap {
 				loginId: "graeme",
 				password: "willow",
 				profile: new Profile(fullName: "Graeme Rocher", email: "graeme@nowhere.net"),
+				enabled: true,
 				dateCreated: now).save(failOnError: true)
 		def jeff = new User(
 				loginId: "jeff",
@@ -65,11 +66,13 @@ class BootStrap {
 				loginId: "frankie",
 				password: "testing",
 				profile: new Profile(fullName: "Frankie Goes to Hollywood", email: "frankie@nowhere.net"),
+				enabled: true,
 				dateCreated: now).save(failOnError: true)
 		def sara = new User(
 				loginId: "sara",
 				password: "crikey",
 				profile: new Profile(fullName: "Sara Miles", email: "sara@nowhere.net"),
+				enabled: true,
 				dateCreated: now - 2).save(failOnError: true)
 		def phil = new User(
 				loginId: "phil",
@@ -152,7 +155,7 @@ class BootStrap {
 			println "Fresh Database. Creating ADMIN user."
 
 			def profile = new Profile(email: "admin@yourhost.com", fullName: "Administrator")
-			new User(loginId: "admin", password: "secret", profile: profile).save(failOnError: true)
+			new User(loginId: "admin", password: "secret", profile: profile, enabled: true).save(failOnError: true)
 		}
 		else {
 			println "Existing admin user, skipping creation"

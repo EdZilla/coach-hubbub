@@ -140,3 +140,36 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.summitbid.coach.User'
+grails.plugin.springsecurity.userLookup.usernamePropertyName = 'loginId'
+grails.plugin.springsecurity.userLookup.passwordPropertyName = 'passwordHash'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.summitbid.coach.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.summitbid.coach.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
+]
+
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.interceptUrlMap = [
+   '/':             ['IS_AUTHENTICATED_ANONYMOUSLY'],
+   '/user/**':      ['ROLE_ADMIN'],
+   '/role/**':      ['ROLE_ADMIN'],
+   '/secure/**':    ['ROLE_ADMIN'],
+   '/finance/**':   ['ROLE_FINANCE', 'IS_AUTHENTICATED_FULLY'],
+   '/js/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+   '/css/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+   '/images/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+   '/login/auth':   ['IS_AUTHENTICATED_ANONYMOUSLY'],
+   '/logout/**':    ['IS_AUTHENTICATED_ANONYMOUSLY'],
+   '/**':           ['IS_AUTHENTICATED_REMEMBERED']
+]
+
