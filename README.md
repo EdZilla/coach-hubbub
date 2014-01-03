@@ -33,6 +33,9 @@ Error Resolve error obtaining dependencies: Could not find artifact org.compass-
 
 Needed to change permissions on .grails/project directory to eyoung2297k. 
         
-Seems to work with 0.6.5 and only the User.groovy domain changes. Post.groovy changes fail.         
+Seems to work with 0.6.5 and only the User.groovy domain changes. Post.groovy changes fail. Need to revisit
+
+Lucene search toolbox/control panel
+http://www.getopt.org/luke/        
         
 
