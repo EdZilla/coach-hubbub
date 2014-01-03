@@ -40,7 +40,9 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+		// next two only for spring security RC. Once they go GA remove 
 		mavenRepo 'http://repo.spring.io/milestone'
+		mavenRepo "http://download.java.net/maven/2/"
 		
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
@@ -105,5 +107,6 @@ grails.project.dependency.resolution = {
 		test ':dumbster:0.1'
 		
 		compile ':spring-security-core:2.0-RC2'
+		compile ":spring-security-ui:1.0-RC1"
     }
 }
