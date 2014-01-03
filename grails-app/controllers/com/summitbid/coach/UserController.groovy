@@ -101,6 +101,22 @@ class UserController {
 			[ profile: user.profile ]
 		}
 	}
+	
+	/**
+	 * From graina2 chapter 10
+	 * @param email
+	 */
+	def welcomeEmail(String email) {
+		if (email) {
+			sendMail {
+				to email
+				subject "Welcome to Coach Hubbub!"
+				html view: "welcomeEmail", model: [ email: email ]
+			}
+			flash.message = "Welcome aboard"
+		}
+		redirect(uri: "/")
+	}
 }
 
 

@@ -69,6 +69,8 @@ grails.project.dependency.resolution = {
         //compile ":scaffolding:2.0.1"
 		compile ":scaffolding:2.0.1"
         compile ':cache:1.1.1'
+		// from graina2 chapter 10. Don't need both cache and cache-ehcache so choose one. cache-ehcache is much more sophistocated. 
+		//compile ":cache-ehcache:1.0.0"
 		compile ":platform-core:1.0.RC6"
 
         // plugins needed at runtime but not for compilation
@@ -87,5 +89,16 @@ grails.project.dependency.resolution = {
 //		test(":spock:0.7") {
 //			exclude "spock-grails-support"
 //		}
+		
+		// from Chapter 10 in Graina2
+		compile ':mail:1.0.1'
+		
+		//compile ':searchable:0.6.6'
+		compile ':searchable:0.6.5'
+		// try this
+		//compile ':searchable:0.6.4'
+		
+		// to test emails
+		test ':dumbster:0.1'
     }
 }
