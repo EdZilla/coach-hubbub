@@ -40,6 +40,8 @@ grails.project.dependency.resolution = {
         mavenLocal()
         grailsCentral()
         mavenCentral()
+		mavenRepo 'http://repo.spring.io/milestone'
+		
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -77,6 +79,7 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:3.6.10.4" // or ":hibernate4:4.1.11.4"
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.10.2"
+		runtime ":jquery-ui:1.10.3", ":famfamfam:1.0.1"
         runtime ":resources:1.2.1"
 		
 		test("org.grails.plugins:geb:$gebVersion")
@@ -100,5 +103,7 @@ grails.project.dependency.resolution = {
 		
 		// to test emails
 		test ':dumbster:0.1'
+		
+		compile ':spring-security-core:2.0-RC2'
     }
 }
