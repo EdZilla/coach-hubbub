@@ -27,13 +27,13 @@ Compile error during compilation with javac.
         Mapping mapping = GrailsDomainBinder.getMapping(domainClassProperty.getDomainClass().getClazz());
         
 0.6.5 (supposed to work with grails 2.3.x) seems to work ok
-0.6.6 does not work. Fails with
+0.6.6 does not work. Fails with : 
 Error Resolve error obtaining dependencies: Could not find artifact org.compass-project:compass:jar:2.2.1 in grailsCentral (http://repo.grails.org/grails/plugins) (Use --stacktrace to see the full trace)
 
 
 Needed to change permissions on .grails/project directory to eyoung2297k. 
         
-Seems to work with 0.6.5 and only the User.groovy domain changes. Post.groovy changes fail. Need to revisit
+Seems to work with 0.6.5 and only the User.groovy domain changes. Post.groovy changes fail. Need to revisit this because I can't get it to work. 
 
 Lucene search toolbox/control panel
 http://www.getopt.org/luke/        

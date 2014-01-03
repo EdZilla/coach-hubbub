@@ -19,9 +19,9 @@ class User {
 		profile nullable: true
     }
 	
-	//static searchable = {
-	//	except = ["password"]
-	//}
+//	static searchable = {
+//		except = ["password"]
+//	}
 	
 	static mapping = {
 		profile lazy: false
