@@ -94,7 +94,7 @@ grails.project.dependency.resolution = {
 		compile ':mail:1.0.1'
 		
 		//compile ':searchable:0.6.6'
-		compile ':searchable:0.6.5'
+		//compile ':searchable:0.6.5'
 		// try this
 		//compile ':searchable:0.6.4'
 		
