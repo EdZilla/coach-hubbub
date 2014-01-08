@@ -96,11 +96,38 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+ 
+// tomcat plugin JNDI config for localhost development
+grails.naming.entries = ['jdbc/coachHubbubDBDataSource': [
+	type: "javax.sql.DataSource", //required
+		auth: "Container", // optional
+		description: "Data source for Coach Hubbub...", //optional
+		//properties for particular type of resource
+	//url: "jdbc:mysql://chimps-lb-04.cable.comcast.com:3306/chimps?autoReconnect=true",
+	url: "jdbc:mysql://localhost:3306/coach?autoReconnect=true",
+	username: "coach",
+	password: "coach",
+	driverClassName: "com.mysql.jdbc.Driver",
+	maxActive: "100", //and so on
+	maxIdle: "4"
+   ]
+]
+
 environments {
     development {
+		println "Environment is DEVELOPMENT"
         grails.logging.jul.usebridge = true
+		
+		 
     }
+	test {
+		println "Environment is TEST"
+		//grails.dbconsole.enabled = true
+		//grails.logging.jul.usebridge = false
+		 
+	}
     production {
+		println "Environment is PRODUCTION"
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
     }

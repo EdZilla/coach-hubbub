@@ -54,6 +54,8 @@ grails.project.dependency.resolution = {
     def seleniumVersion = "2.32.0"
 
     dependencies {
+		//runtime 'mysql:mysql-connector-java:5.1.16'
+		runtime 'mysql:mysql-connector-java:5.1.28'
         test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
         test "org.gebish:geb-spock:$gebVersion"
 
@@ -78,7 +80,7 @@ grails.project.dependency.resolution = {
 		compile ":platform-core:1.0.RC6"
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate:3.6.10.4" // or ":hibernate4:4.1.11.4"
+        runtime ":hibernate:3.6.10.6" // or ":hibernate4:4.1.11.4"
         runtime ":database-migration:1.3.8"
         runtime ":jquery:1.10.2"
 		runtime ":jquery-ui:1.10.3", ":famfamfam:1.0.1"

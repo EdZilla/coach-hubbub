@@ -1,8 +1,8 @@
 dataSource {
-    pooled = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+//    pooled = true
+//    driverClassName = "org.h2.Driver"
+//    username = "sa"
+//    password = ""
 	//logSql = true
 }
 hibernate {
@@ -19,8 +19,20 @@ hibernate {
 environments {
     development {
         dataSource {
+//			jndiName = 'java:comp/env/jdbc/coachHubbubDBDataSource'
+//			pooled = false			
+//			driverClassName = "com.mysql.jdbc.Driver"			
+//			dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:coachDevDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+			//url: "jdbc:mysql://localhost:3306/coach?autoReconnect=true"
+			//username: "coach"
+			//password: "coach"
+            //url = "jdbc:h2:mem:/opt/data/db/coachg2/devDb"
+			//url = "jdbc:h2:mem:/opt/data/db/coachg2/devDb"
+			
+			//url = "jdbc:mysql://localhost:3306/coach?autoReconnect=true"
+			//jndiName = 'java:comp/env/jdbc/coachDBDataSource'						
+			
         }
     }
     test {
@@ -31,19 +43,15 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:coachProdDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=false
-               validationQuery="SELECT 1"
-               jdbcInterceptors="ConnectionState"
-            }
+            //dbCreate = "update"
+			pooled = false
+			dbCreate = "update"			
+			driverClassName = "com.mysql.jdbc.Driver"
+			dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
+			jndiName = 'java:comp/env/jdbc/coachDBDataSource'
+			
+			//jndiName = 'java:comp/env/jdbc/coachDBDataSource'
+			//jndiName = 'java:comp/env/jdbc/coachDBDataSource'
         }
     }
 }
