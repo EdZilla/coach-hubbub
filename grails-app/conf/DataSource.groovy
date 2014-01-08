@@ -31,7 +31,7 @@ environments {
 			//url = "jdbc:h2:mem:/opt/data/db/coachg2/devDb"
 			
 			//url = "jdbc:mysql://localhost:3306/coach?autoReconnect=true"
-			//jndiName = 'java:comp/env/jdbc/coachDBDataSource'						
+			jndiName = 'java:comp/env/jdbc/coachDBDataSource'						
 			
         }
     }
